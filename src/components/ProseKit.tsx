@@ -6,6 +6,7 @@ import { createEditor } from "prosekit/core";
 import { ProseKit } from "prosekit/react";
 import { useMemo } from "react";
 import { BlockHandle } from "./BlockHandle";
+import { useHotkeys } from "react-hotkeys-hook";
 
 const typographyContent = `
 <h1>ProseKit Typography</h1>
@@ -90,14 +91,20 @@ export function ProseKitEditor() {
     return createEditor({ extension, defaultContent: typographyContent });
   }, []);
 
-  return (
-    <ProseKit editor={editor}>
-      <div
-        ref={editor.mount}
-        style={{ outline: "auto", paddingInline: "80px" }}
-      ></div>
+  useHotkeys("ctrl+shift+6", () => console.log("ctrl+shift+6"));
 
-      <BlockHandle />
-    </ProseKit>
+  return (
+    <div>
+      <h1>Test</h1>
+
+      <ProseKit editor={editor}>
+        <div
+          ref={editor.mount}
+          style={{ outline: "auto", paddingInline: "80px" }}
+        ></div>
+
+        <BlockHandle />
+      </ProseKit>
+    </div>
   );
 }
